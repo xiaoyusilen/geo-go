@@ -115,8 +115,8 @@ func ParseFromFlags() *Config {
 	port := kingpin.Flag("port", "Set service listening port.").Default(defaultPort).Int()
 
 	logFormatter := kingpin.Flag("logFormatter", "Log formatter").Default(LogTextFormatter).String()
-	logOutput := kingpin.Flag("logOutput", "Log output").Default(LogFileOutput).String()
-	logFilePath := kingpin.Flag("logFilePath", "Log file path").Default("./log.log").String()
+	logOutput := kingpin.Flag("logOutput", "Log output").Default(LogConsoleOutput).String()
+	logFilePath := kingpin.Flag("logFilePath", "Log file path").String()
 	logLevel := kingpin.Flag("logLevel", "Log level").Default(LogDebugLevel).String()
 
 	tile38address := kingpin.Flag("tile38Address", "Tile38 Server address").Default(defaultTile38Address).String()

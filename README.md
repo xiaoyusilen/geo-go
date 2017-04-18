@@ -1,5 +1,5 @@
-# Gopher
-Some code about Go.
+# Geo-Go
+This is a project about geo-fence.
 
 # How to start
 Do like below:

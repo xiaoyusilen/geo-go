@@ -44,10 +44,10 @@ func Listen(w http.ResponseWriter, r *http.Request) {
 	log.Println(msg)
 }
 
-func main() {
-	http.HandleFunc("/", Listen)
-	err := http.ListenAndServe(":9000", nil)
-	if err != nil {
-		log.Fatal(err)
-	}
-}
+//func main() {
+//	http.HandleFunc("/", Listen)
+//	err := http.ListenAndServe(":9000", nil)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//}

@@ -12,22 +12,39 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestNewRethinkdb(t *testing.T) {
+func InitTileRethink() *r.Session {
 	// 读取配置文件
 	cfg := config.ParseFromFlags()
 
 	session := service.NewRethinkdb(cfg.RethinkAddress)
 
+	return session
+}
+
+func TestCreateTable(t *testing.T) {
+
+	session := InitTileRethink()
+
+	defer session.Close()
+
 	// 创建数据库表测试
 	response, err := r.DB("test").TableCreate("test").RunWrite(session)
+
 	if err != nil {
 		t.Errorf("Error creating table: %s", err)
 	}
 
 	log.Infof("%d table created", response.TablesCreated)
+}
+
+func TestInsertData(t *testing.T) {
+
+	session := InitTileRethink()
+
+	defer session.Close()
 
 	// 插入数据测试
-	response, err = r.DB("test").Table("test").Insert(map[string]string{
+	response, err := r.DB("test").Table("test").Insert(map[string]string{
 		"name": "test",
 	}).RunWrite(session)
 
@@ -36,9 +53,16 @@ func TestNewRethinkdb(t *testing.T) {
 	}
 
 	log.Infof("%d row inserted", response.Inserted)
+}
+
+func TestQueryData(t *testing.T) {
+
+	session := InitTileRethink()
+
+	defer session.Close()
 
 	// 查询数据测试
-	cur, err := r.DB("test").Table("test").Map(map[string]interface{}{
+	response, err := r.DB("test").Table("test").Map(map[string]interface{}{
 		"id":   r.Row.Field("id"),
 		"name": r.Row.Field("name"),
 	}).Run(session)
@@ -47,7 +71,7 @@ func TestNewRethinkdb(t *testing.T) {
 	}
 
 	var res map[string]interface{}
-	err = cur.One(&res)
+	err = response.One(&res)
 	if err != nil {
 		t.Errorf("Error query: %s", err)
 	}
@@ -58,8 +82,16 @@ func TestNewRethinkdb(t *testing.T) {
 
 	log.Infof("Query success")
 
+}
+
+func TestUpdateData(t *testing.T) {
+
+	session := InitTileRethink()
+
+	defer session.Close()
+
 	// 更新数据测试
-	response, err = r.DB("test").Table("test").Filter(map[string]string{
+	response, err := r.DB("test").Table("test").Filter(map[string]string{
 		"name": "test",
 	}).Update(map[string]interface{}{
 		"name": "test_change",
@@ -70,9 +102,16 @@ func TestNewRethinkdb(t *testing.T) {
 	}
 
 	log.Infof("%d row updated", response.Replaced)
+}
+
+func TestDeleteData(t *testing.T) {
+
+	session := InitTileRethink()
+
+	defer session.Close()
 
 	// 删除数据测试
-	response, err = r.DB("test").Table("test").Filter(map[string]string{
+	response, err := r.DB("test").Table("test").Filter(map[string]string{
 		"name": "test_change",
 	}).Delete().RunWrite(session)
 
@@ -81,23 +120,40 @@ func TestNewRethinkdb(t *testing.T) {
 	}
 
 	log.Infof("%d row deleted", response.Deleted)
+}
+
+func TestDropTable(t *testing.T) {
+
+	session := InitTileRethink()
+
+	defer session.Close()
 
 	// 删除数据库表测试
-	response, err = r.DB("test").TableDrop("test").RunWrite(session)
+	response, err := r.DB("test").TableDrop("test").RunWrite(session)
 	if err != nil {
 		t.Errorf("Error drop table: %s", err)
 	}
 
 	log.Infof("%d table droped", response.TablesDropped)
+}
 
-	//Sample output
-	//INFO[0000] 1 table created
-	//INFO[0000] 1 row inserted
-	//INFO[0000] Query success
-	//INFO[0000] 1 row updated
-	//INFO[0000] 1 row deleted
-	//INFO[0000] 1 table droped
-	//PASS
-	//ok      github.com/geo-go/tile38_sample 0.708s
+func main() {
+	var t *testing.T
+	TestCreateTable(t)
+	TestInsertData(t)
+	TestQueryData(t)
+	TestUpdateData(t)
+	TestDeleteData(t)
+	TestDropTable(t)
+
+	// Sample output
+	// INFO[0000] 1 table created
+	// INFO[0000] 1 row inserted
+	// INFO[0000] Query success
+	// INFO[0000] 1 row updated
+	// INFO[0000] 1 row deleted
+	// INFO[0000] 1 table droped
+	// PASS
+	// ok      github.com/geo-go/tile38_sample 0.783s
 
 }
