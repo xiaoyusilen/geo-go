@@ -7,3 +7,6 @@ Do like below:
 2. `glide update`
 
 If you don't know how to use `glide`, I wrote something about this, [Go Glide](http://xiaoyu.world/2017/02/14/go-package-manage-tool/).
+
+4.19 is my birthday~ And CI test passed today, Happy birthday~
+A new divide~
