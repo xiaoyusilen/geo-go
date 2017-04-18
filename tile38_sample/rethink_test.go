@@ -7,9 +7,9 @@ import (
 
 	r "github.com/GoRethink/gorethink.git"
 	log "github.com/Sirupsen/logrus"
-	"github.com/geo-go/common/service"
-	"github.com/geo-go/config"
 	"github.com/stretchr/testify/assert"
+	"github.com/xiaoyusilen/geo-go/common/service"
+	"github.com/xiaoyusilen/geo-go/config"
 )
 
 func InitTileRethink() *r.Session {
