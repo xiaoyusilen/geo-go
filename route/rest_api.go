@@ -5,7 +5,7 @@ package route
 import (
 	r "github.com/GoRethink/gorethink.git"
 	log "github.com/Sirupsen/logrus"
-	"github.com/ant0ine/go-json-rest.git/rest"
+	"github.com/ant0ine/go-json-rest/rest"
 	"github.com/xiaoyusilen/geo-go/common/service"
 	"github.com/xiaoyusilen/geo-go/config"
 )

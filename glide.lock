@@ -1,5 +1,5 @@
 hash: 7a184d2cbc706d148cd622d449cd31d2be2737a9b55398ac22ee9f5250978567
-updated: 2017-04-18T22:37:50.078897034+08:00
+updated: 2017-04-18T23:20:48.187392509+08:00
 imports:
 - name: github.com/alecthomas/kingpin
   version: 7f0871f2e17818990e4eed73f9b5c2f429501228
@@ -12,6 +12,7 @@ imports:
 - name: github.com/ant0ine/go-json-rest
   version: ce4b71cdf7ba29ef443d704bd923f5bbf281ee30
   subpackages:
+  - rest
   - rest/trie
 - name: github.com/cenkalti/backoff
   version: 4dc77674aceaabba2c7e3da25d4c823edfb73f99

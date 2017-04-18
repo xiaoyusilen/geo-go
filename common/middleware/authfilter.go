@@ -3,7 +3,7 @@
 package middleware
 
 import (
-	"github.com/ant0ine/go-json-rest.git/rest"
+	"github.com/ant0ine/go-json-rest/rest"
 )
 
 var (
