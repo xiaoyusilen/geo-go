@@ -1,4 +1,4 @@
-# Geo-Go
+# Geo-Go [![Circle CI](https://circleci.com/gh/xiaoyusilen/geo-go.svg?style=svg)](https://circleci.com/gh/xiaoyusilen/geo-go)
 This is a project about geo-fence.
 
 # How to start
