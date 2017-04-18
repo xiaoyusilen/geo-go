@@ -1,5 +1,5 @@
-hash: 7a184d2cbc706d148cd622d449cd31d2be2737a9b55398ac22ee9f5250978567
-updated: 2017-04-18T23:20:48.187392509+08:00
+hash: 13de37910a0a40284bfeb0307f0798a4276737dc386836e0fa200bf126d11230
+updated: 2017-04-18T23:32:59.802779098+08:00
 imports:
 - name: github.com/alecthomas/kingpin
   version: 7f0871f2e17818990e4eed73f9b5c2f429501228
@@ -27,7 +27,7 @@ imports:
   version: 2402d76f3d41f928c7902a765dfc872356dd3aad
   subpackages:
   - proto
-- name: github.com/GoRethink/gorethink.git
+- name: github.com/GoRethink/gorethink
   version: 7ab832f7b65573104a555d84a27992ae9ea1f659
 - name: github.com/hailocab/go-hostpool
   version: e80d13ce29ede4452c43dea11e79b9bc8a15b478

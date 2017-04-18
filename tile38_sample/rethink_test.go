@@ -5,7 +5,7 @@ package tile38_sample
 import (
 	"testing"
 
-	r "github.com/GoRethink/gorethink.git"
+	r "github.com/GoRethink/gorethink"
 	log "github.com/Sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
 	"github.com/xiaoyusilen/geo-go/common/service"

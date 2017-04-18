@@ -3,7 +3,7 @@
 package route
 
 import (
-	r "github.com/GoRethink/gorethink.git"
+	r "github.com/GoRethink/gorethink"
 	log "github.com/Sirupsen/logrus"
 	"github.com/ant0ine/go-json-rest/rest"
 	"github.com/xiaoyusilen/geo-go/common/service"

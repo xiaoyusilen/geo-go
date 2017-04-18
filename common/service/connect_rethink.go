@@ -3,7 +3,7 @@
 package service
 
 import (
-	r "github.com/GoRethink/gorethink.git"
+	r "github.com/GoRethink/gorethink"
 	log "github.com/Sirupsen/logrus"
 )
 
