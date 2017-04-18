@@ -7,8 +7,8 @@ import (
 	"runtime/debug"
 
 	log "github.com/Sirupsen/logrus"
-	"github.com/geo-go/config"
-	"github.com/geo-go/route"
+	"github.com/xiaoyusilen/geo-go/config"
+	"github.com/xiaoyusilen/geo-go/route"
 )
 
 func initLogger(cfg *config.Config) {
