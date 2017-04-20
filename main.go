@@ -1,8 +1,6 @@
 package main
 
 import (
-	"fmt"
-	"net/http"
 	"os"
 	"runtime/debug"
 
@@ -49,25 +47,29 @@ func initLogger(cfg *config.Config) {
 }
 
 func main() {
-	defer func() {
-		if err := recover(); err != nil {
-			debug.PrintStack()
-		}
-	}()
-
 	// 读取配置文件
 	cfg := config.ParseFromFlags()
 
 	// 初始化log
 	initLogger(cfg)
 
-	// 启动Http 服务
-	api := route.NewRestApi(cfg)
+	// 初始化Http服务
+	r := route.HandleRest(cfg)
 
-	address := fmt.Sprintf("%s:%d", cfg.Host, cfg.Port)
-	log.Printf("Start successfully[%s] \n", address)
+	r.Router.Run(":9000")
 
-	if err := http.ListenAndServe(address, api.Api.MakeHandler()); err != nil {
-		log.Fatal("api: Listen server failed, ", err)
-	}
+	defer func() {
+		if err := recover(); err != nil {
+			debug.PrintStack()
+		}
+
+		// 关闭tile38连接
+		r.Tile38.Close()
+
+		// 关闭Rethinkdb连接
+		r.Rethink.Close()
+
+		// TODO: 关闭Http service
+	}()
+
 }

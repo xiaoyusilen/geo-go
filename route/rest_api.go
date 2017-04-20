@@ -4,63 +4,43 @@ package route
 
 import (
 	r "github.com/GoRethink/gorethink"
-	log "github.com/Sirupsen/logrus"
-	"github.com/ant0ine/go-json-rest/rest"
+	"github.com/gin-gonic/gin"
 	"github.com/xiaoyusilen/geo-go/common/service"
 	"github.com/xiaoyusilen/geo-go/config"
+	redis "gopkg.in/redis.v5"
 )
 
 type RestApi struct {
-	*rest.Api
+	Router *gin.Engine
 
 	// Configurations
 	Config *config.Config
 
 	// tile38
-	Cache *service.CacheService
+	Tile38 *redis.Client
 
 	// rethinkdb
 	Rethink *r.Session
 }
 
-func NewRestApi(cfg *config.Config) *RestApi {
+func HandleRest(cfg *config.Config) *RestApi {
 
 	r := &RestApi{
 
-		Api: rest.NewApi(),
+		Router: gin.Default(),
 
 		Config: cfg,
 
-		Cache: service.NewTile38Service(cfg.Tile38Address,
-			cfg.Tile38DBNumber,
-			cfg.Tile38MaxIdleConnection,
-			cfg.Tile38IdleTimeout,
-			cfg.Tile38ConnectTimeout,
-			cfg.Tile38ReadTimeout,
-			cfg.Tile38WriteTimeout,
-		),
+		Tile38: service.NewTile38(cfg.Tile38Address),
 
 		Rethink: service.NewRethinkdb(cfg.RethinkAddress),
 	}
 
-	r.SetApp(r.makeRouter())
-
-	return r
-}
-
-func (api *RestApi) makeRouter() rest.App {
-
-	routers := []*rest.Route{}
-
-	routers = append(routers, []*rest.Route{
-	// add rest api func
-	}...)
-
-	app, err := rest.MakeRouter(routers...)
-
-	if err != nil {
-		log.Panic(err)
+	api := r.Router.Group("/api")
+	{
+		// todo: register route
+		api.POST("/register", r.Register)
 	}
 
-	return app
+	return r
 }

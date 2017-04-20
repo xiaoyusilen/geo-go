@@ -1,6 +1,6 @@
 // author by @xiaoyusilen
 
-package tile38_sample
+package service
 
 import (
 	"testing"
@@ -8,15 +8,17 @@ import (
 	r "github.com/GoRethink/gorethink"
 	log "github.com/Sirupsen/logrus"
 	"github.com/stretchr/testify/assert"
-	"github.com/xiaoyusilen/geo-go/common/service"
-	"github.com/xiaoyusilen/geo-go/config"
 )
 
 func InitTileRethink() *r.Session {
-	// 读取配置文件
-	cfg := config.ParseFromFlags()
-
-	session := service.NewRethinkdb(cfg.RethinkAddress)
+	session, err := r.Connect(r.ConnectOpts{
+		Address:    "127.0.0.1:28015",
+		InitialCap: 10,
+		MaxOpen:    10,
+	})
+	if err != nil {
+		log.Fatalln(err.Error())
+	}
 
 	return session
 }
