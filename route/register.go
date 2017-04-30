@@ -3,14 +3,14 @@
 package route
 
 import (
-	r "github.com/GoRethink/gorethink"
+	"github.com/xiaoyusilen/geo-go/repository"
+
 	log "github.com/Sirupsen/logrus"
 	"github.com/gin-gonic/gin"
 )
 
 type RegisterReq struct {
 	Name string `json:"name"`
-	ID   string
 }
 
 // Request body
@@ -25,7 +25,6 @@ type RegisterReq struct {
 func (api *RestApi) Register(c *gin.Context) {
 	params := RegisterReq{}
 
-	// 解析json
 	err := c.BindJSON(&params)
 
 	if err != nil {
@@ -36,15 +35,17 @@ func (api *RestApi) Register(c *gin.Context) {
 		return
 	}
 
-	_, err = r.DB("test").Table("test").Insert(map[string]string{
-		"name": params.Name,
-	}).RunWrite(api.Rethink)
+	user := &repository.User{
+		Name: params.Name,
+	}
 
-	if err != nil {
+	res, err := repository.Register(api.Mongo, user, "test")
+
+	if err != nil || !res {
 		c.JSON(200, gin.H{
 			"result": false,
 		})
-		log.Errorf("Error insert data: %s", err)
+		log.Errorf("Register failed, err is: %s.", err)
 		return
 	}
 

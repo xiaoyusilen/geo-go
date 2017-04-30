@@ -47,13 +47,13 @@ func initLogger(cfg *config.Config) {
 }
 
 func main() {
-	// 读取配置文件
+	// parse config
 	cfg := config.ParseFromFlags()
 
-	// 初始化log
+	// init log
 	initLogger(cfg)
 
-	// 初始化Http服务
+	// init Http service
 	r := route.HandleRest(cfg)
 
 	r.Router.Run(":9000")
@@ -63,13 +63,13 @@ func main() {
 			debug.PrintStack()
 		}
 
-		// 关闭tile38连接
+		// close tile38
 		r.Tile38.Close()
 
-		// 关闭Rethinkdb连接
-		r.Rethink.Close()
+		// close mongodb
+		r.Mongo.Close()
 
-		// TODO: 关闭Http service
+		// TODO: close Http service
 	}()
 
 }
