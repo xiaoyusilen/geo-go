@@ -13,6 +13,7 @@ const (
 
 	defaultTile38Address  = "127.0.0.1:9851"  // default tile38 server address
 	defaultRethinkAddress = "127.0.0.1:28015" // default rethink driver address
+	defaultMongoAddress   = "127.0.0.1:27017" // default mongo db address
 
 	LogTextFormatter = "text"
 	LogJSONFormatter = "json"
@@ -45,6 +46,7 @@ type Config struct {
 
 	Tile38Address  string
 	RethinkAddress string
+	MongoAddress   string
 }
 
 // SetFormatter sets the formatter of logger
@@ -113,6 +115,7 @@ func ParseFromFlags() *Config {
 
 	tile38address := kingpin.Flag("tile38Address", "Tile38 Server address").Default(defaultTile38Address).String()
 	rethinkaddress := kingpin.Flag("rethinkAddress", "Rethink Driver address").Default(defaultRethinkAddress).String()
+	mongoaddress := kingpin.Flag("mongoAddress", "Mongo DB address").Default(defaultMongoAddress).String()
 
 	kingpin.Parse()
 
@@ -122,6 +125,7 @@ func ParseFromFlags() *Config {
 		Port:           *port,
 		Tile38Address:  *tile38address,
 		RethinkAddress: *rethinkaddress,
+		MongoAddress:   *mongoaddress,
 
 		LogConfig: &LogConfig{},
 	}
