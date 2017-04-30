@@ -4,7 +4,7 @@ package service
 
 import (
 	log "github.com/Sirupsen/logrus"
-	redis "gopkg.in/redis.v5"
+	redis "github.com/go-redis/redis"
 	"testing"
 )
 

@@ -4,10 +4,10 @@ package route
 
 import (
 	"github.com/gin-gonic/gin"
+	redis "github.com/go-redis/redis"
 	"github.com/xiaoyusilen/geo-go/common/service"
 	"github.com/xiaoyusilen/geo-go/config"
 	mgo "gopkg.in/mgo.v2"
-	redis "gopkg.in/redis.v5"
 )
 
 type RestApi struct {
