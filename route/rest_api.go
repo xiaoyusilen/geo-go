@@ -3,11 +3,11 @@
 package route
 
 import (
-	r "github.com/GoRethink/gorethink"
 	"github.com/gin-gonic/gin"
+	redis "github.com/go-redis/redis"
 	"github.com/xiaoyusilen/geo-go/common/service"
 	"github.com/xiaoyusilen/geo-go/config"
-	redis "gopkg.in/redis.v5"
+	mgo "gopkg.in/mgo.v2"
 )
 
 type RestApi struct {
@@ -19,8 +19,8 @@ type RestApi struct {
 	// tile38
 	Tile38 *redis.Client
 
-	// rethinkdb
-	Rethink *r.Session
+	// mongodb
+	Mongo *mgo.Session
 }
 
 func HandleRest(cfg *config.Config) *RestApi {
@@ -33,7 +33,7 @@ func HandleRest(cfg *config.Config) *RestApi {
 
 		Tile38: service.NewTile38(cfg.Tile38Address),
 
-		Rethink: service.NewRethinkdb(cfg.RethinkAddress),
+		Mongo: service.NewMongo(cfg.RethinkAddress),
 	}
 
 	api := r.Router.Group("/api")
