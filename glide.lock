@@ -1,9 +1,5 @@
 hash: 13de37910a0a40284bfeb0307f0798a4276737dc386836e0fa200bf126d11230
-<<<<<<< HEAD
-updated: 2017-05-18T22:11:21.121261823+08:00
-=======
-updated: 2017-04-30T20:52:27.893380646+08:00
->>>>>>> be4479ff516dbd07b87884141c515c603f87ec78
+updated: 2017-05-18T22:19:00.602528863+08:00
 imports:
 - name: github.com/alecthomas/kingpin
   version: 7f0871f2e17818990e4eed73f9b5c2f429501228
@@ -47,11 +43,7 @@ imports:
 - name: github.com/Sirupsen/logrus
   version: ba1b36c82c5e05c4f912a88eab0dcd91a171688f
 - name: golang.org/x/crypto
-<<<<<<< HEAD
   version: 0fe963104e9d1877082f8fb38f816fcd97eb1d10
-=======
-  version: c7af5bf2638a1164f2eb5467c39c6cffbd13a02e
->>>>>>> be4479ff516dbd07b87884141c515c603f87ec78
   subpackages:
   - pbkdf2
 - name: golang.org/x/net
@@ -76,8 +68,6 @@ imports:
   - encoding
   - ql2
   - types
-<<<<<<< HEAD
-=======
 - name: gopkg.in/mgo.v2
   version: 3f83fa5005286a7fe593b055f0d7771a7dce4655
   subpackages:
@@ -85,9 +75,6 @@ imports:
   - internal/json
   - internal/sasl
   - internal/scram
->>>>>>> be4479ff516dbd07b87884141c515c603f87ec78
-- name: gopkg.in/redis.v5
-  version: 15786cf82174d65ac7f478c7faa6d2e055dad8b7
 - name: gopkg.in/yaml.v2
   version: 31c299268d302dd0aa9a0dcf765a3d58971ac83f
 testImports:

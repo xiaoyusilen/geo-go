@@ -2,11 +2,6 @@
 vendor/*
 .DS_Store
 main
-<<<<<<< HEAD
 /config/
 /tile38_example/
 /send_email/config/
-=======
-tile38_example
-config/
->>>>>>> be4479ff516dbd07b87884141c515c603f87ec78
