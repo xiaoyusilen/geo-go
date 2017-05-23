@@ -4,4 +4,3 @@ vendor/*
 main
 /config/
 /tile38_example/
-/send_email/config/
